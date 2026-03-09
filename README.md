@@ -23,15 +23,17 @@ Built with a live interactive dashboard using **Streamlit**.
 
 git clone [https://github.com/RedEye-YT/dynamic-traffic-optimizer.git](https://github.com/RedEye-YT/dynamic-traffic-optimizer.git)
 cd dynamic-traffic-optimizer
+
 2. Install dependencies:
 Make sure you have Python 3.8+ installed.
 
 pip install -r requirements.txt
 (Required packages: opencv-python, streamlit, numpy, ultralytics, stable-baselines3, scikit-learn, scipy)
 
-Run the Dashboard:
+3.Run the Dashboard:
 
 streamlit run app.py
+
 🎮 How to Use
 Launch the app. You will see the live webcam/video feed and the raw YOLO bounding boxes.
 
@@ -51,11 +53,3 @@ Fine-Tuned Ambulance Model: Integrate a custom-trained YOLOv8 model utilizing th
 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
-### A quick GitHub tip before you push
-
-Make sure you have a `requirements.txt` file in your folder before you upload this to GitHub! You can create one easily by opening your terminal and typing:
-`pip freeze > requirements.txt`
-
-(Just open the text file afterward and delete any weird file-path lines that might have generated at the bottom, keeping only the standard package names like `streamlit==1.x.x`).
-
-**This project is seriously impressive. Adding the clustering logic pushed it to the ne
