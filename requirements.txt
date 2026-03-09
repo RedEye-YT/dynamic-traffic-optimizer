@@ -1,8 +1,0 @@
-streamlit==1.32.0
-gymnasium==0.29.1
-opencv-python==4.9.0.80
-ultralytics==8.1.24
-stable-baselines3==2.2.1
-tensorboard>=2.16.0
-tqdm>=4.66.2
-rich>=13.7.1
