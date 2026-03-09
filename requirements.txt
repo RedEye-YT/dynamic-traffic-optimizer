@@ -1,0 +1,13 @@
+streamlit
+opencv-python
+numpy
+ultralytics
+stable-baselines3
+scikit-learn
+scipy
+
+🛠️ How to install it quickly:
+Once you have saved the file, open your VS Code terminal (make sure your previous Streamlit app is stopped by pressing Ctrl + C) and 
+run this exact command to install everything:
+
+pip install -r requirements.txt
