@@ -32,13 +32,19 @@ pip install -r requirements.txt
 ```
 (Required packages: opencv-python, streamlit, numpy, ultralytics, stable-baselines3, scikit-learn, scipy)
 
-3.Run the Dashboard:
+**3. Download the Emergency Model:**
+Go to the **[Releases]** tab on the right side of this repository and download `emergency.pt`. Place this file directly into your main project folder next to `app.py`.
+
+4.Run the Dashboard:
 ```
 streamlit run app.py
 ```
 
-🎮 How to Use
-Launch the app. You will see the live webcam/video feed and the raw YOLO bounding boxes.
+🎮 How to Use 
+
+Launch the app. 
+
+You will see the live webcam/video feed and the raw YOLO bounding boxes.
 
 Open the ⚙️ System Configuration sidebar on the left.
 
@@ -58,9 +64,6 @@ Civic Dashboard Integration: Connect the telemetry data to a broader civic netwo
 🤝 Contributing
 ***
 
-This makes the project look incredibly robust. The "Dual-Brain Perception" bullet point alone is going to look fantastic on a resume. 
-
-Would you like to brainstorm some quick talking points on how to present this project if you are demonstrating it live to a panel?
 
 
 
