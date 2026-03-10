@@ -20,14 +20,17 @@ VIDEO_SOURCE = 0  # 0 for webcam. Change back to r"d:\VS Code Terminal\traffic.m
 # ==========================================
 # 3. LOAD MODELS
 # ==========================================
+# ==========================================
+# 3. LOAD AI MODELS (Cached)
+# ==========================================
 @st.cache_resource
 def load_models():
-    vision = YOLO('yolov8n.pt') 
+    vision = YOLO('yolov8n.pt')              # Brain 1: Standard Traffic
+    emergency = YOLO('emergency.pt')         # Brain 2: Emergency Vehicles
     rl = PPO.load("models/ppo_traffic_optimizer")
-    return vision, rl
+    return vision, emergency, rl
 
-vision_model, rl_agent = load_models()
-
+vision_model, emergency_model, rl_agent = load_models()
 # ==========================================
 # 4. DEFINE ADVANCED FUNCTIONS (Auto-Calibration)
 # ==========================================
@@ -114,16 +117,27 @@ while cap.isOpened():
         st.warning("Video stream ended. Please restart the app.")
         break
     
-    # Run Perception (with confidence threshold)
-    results = vision_model(frame, classes=[2, 3, 5, 7, 9], conf=0.5, verbose=False)
+    # 1. Perception Logic: Standard Traffic (Removed class 9 so it stops flagging traffic lights)
+    results = vision_model(frame, classes=[2, 3, 5, 7], conf=0.5, verbose=False)
+    
+    # 2. Perception Logic: Emergency Vehicles 
+    ev_results = emergency_model(frame, conf=0.4, verbose=False)
+    
+    # 3. Emergency Override Flag (If the emergency model sees ANY bounding box, trigger the alarm)
+    ev_flag = 1 if len(ev_results[0].boxes) > 0 else 0
     
     # Fetch active Auto-Calibrated lanes
     active_rois = st.session_state.get('custom_rois', None)
     
-    # Pass active_rois into tracker
-    lane_counts, ev_flag, _ = process_frame_detections(results[0].boxes, frame=frame, custom_rois=active_rois)
+    # 4. Tracking & PIP Logic (We ignore the tracker's old ev_flag since we handle it above now)
+    lane_counts, _, _ = process_frame_detections(results[0].boxes, frame=frame, custom_rois=active_rois)
     
-    annotated_frame = results[0].plot()
+    # 5. Visual FX: Draw standard cars first
+    annotated_frame = results[0].plot() 
+    
+    # 6. Visual FX: Draw the ambulance bounding boxes on top of the cars if one is detected!
+    if ev_flag == 1:
+        annotated_frame = ev_results[0].plot(img=annotated_frame)
     
     # Zero-Padding trick for 2-Way vs 4-Way
     if mode == "4-Way Intersection":
