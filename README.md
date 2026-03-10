@@ -21,9 +21,9 @@ Built with a live interactive dashboard using **Streamlit**. Designed as a smart
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/RedEye-YT/dynamic-traffic-optimizer.git](https://github.com/RedEye-YT/dynamic-traffic-optimizer.git)
+https://github.com/RedEye-YT/dynamic-traffic-optimizer.git
 ```
-cd dynamic-traffic-optimizer
+dynamic-traffic-optimizer
 
 2. Install dependencies:
 Make sure you have Python 3.8+ installed.
@@ -61,6 +61,7 @@ Civic Dashboard Integration: Connect the telemetry data to a broader civic netwo
 This makes the project look incredibly robust. The "Dual-Brain Perception" bullet point alone is going to look fantastic on a resume. 
 
 Would you like to brainstorm some quick talking points on how to present this project if you are demonstrating it live to a panel?
+
 
 
 
